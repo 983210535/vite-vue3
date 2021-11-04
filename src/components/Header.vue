@@ -1,9 +1,17 @@
 <template>
   <ul class="title">
-    <router-link to="/" tag="li">首页</router-link>
-    <li>最新商品</li>
-    <li>热门商品</li>
-    <router-link to="/shoppingCar" tag="li">购物车</router-link>
+    <router-link to="/" custom v-slot="{ isActive }">
+      <li :class="{ active: isActive }" @click="changeRouter('/')">首页</li>
+    </router-link>
+    <router-link to="/newShop" custom v-slot="{ isActive }">
+      <li :class="{ active: isActive }" @click="changeRouter('/newShop')">最新商品</li>
+    </router-link>
+    <router-link to="/hotShop" custom v-slot="{ isActive }">
+      <li :class="{ active: isActive }" @click="changeRouter('/hotShop')">热门商品</li>
+    </router-link>
+    <router-link to="/shoppingCar" custom v-slot="{ isActive }">
+      <li :class="{ active: isActive }" @click="changeRouter('/shoppingCar')">购物车</li>
+    </router-link>
     <li>
       我的订单
       <ul class="menu">
@@ -33,7 +41,11 @@ export default {
     console.log(router.getRoutes());
     console.log(router.currentRoute.value);
 
-
+    function changeRouter(href) {
+      router.push({
+        path: href
+      })
+    }
 
     watch(() => router.currentRoute.value.name, (newVal, oldVal) => {
       console.log(newVal, oldVal);
@@ -44,7 +56,7 @@ export default {
     })
 
     return {
-      
+      changeRouter
     }
   }
 }
@@ -53,6 +65,7 @@ export default {
 <style scoped>
 .active {
   color: #FF6A00;
+  background: #fff;
 }
 a {
   color: #fff;
