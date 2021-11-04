@@ -1,9 +1,9 @@
 <template>
   <ul class="title">
-    <li>首页</li>
+    <router-link to="/" tag="li">首页</router-link>
     <li>最新商品</li>
     <li>热门商品</li>
-    <li>购物车</li>
+    <router-link to="/shoppingCar" tag="li">购物车</router-link>
     <li>
       我的订单
       <ul class="menu">
@@ -14,24 +14,49 @@
       </ul>
     </li>
   </ul>
-  <!-- <button type="button" @click="state.count++">
-    count is: {{ state.count }}
-  </button> -->
 </template>
 
-<script setup>
-import { defineProps, reactive } from 'vue'
+<script>
+import { ref, watch, onMounted } from 'vue' 
+import { useRouter } from 'vue-router'
+export default {
+  props: {
+    msg: {
+      type: String,
+      required: true
+    }
+  },
+  setup(props) {
+    const navActive = ref(0)
 
-defineProps({
-  msg: String
-})
+    const router = useRouter()
+    console.log(router.getRoutes());
+    console.log(router.currentRoute.value);
 
-const state = reactive({ count: 0 })
+
+
+    watch(() => router.currentRoute.value.name, (newVal, oldVal) => {
+      console.log(newVal, oldVal);
+    })
+    onMounted(() => {
+      console.log(router);
+      console.log(router.currentRoute.value.path);
+    })
+
+    return {
+      
+    }
+  }
+}
 </script>
 
 <style scoped>
+.active {
+  color: #FF6A00;
+}
 a {
-  color: #42b983;
+  color: #fff;
+  text-decoration: none;
 }
 ul {
   margin: 0;

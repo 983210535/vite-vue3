@@ -1,7 +1,7 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <Header-menu msg="Hello Vue 3 + Vite" />
-  <!-- <router-view></router-view> -->
+  <router-view></router-view>
 </template>
 
 <script setup>

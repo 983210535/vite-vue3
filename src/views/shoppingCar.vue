@@ -1,12 +1,10 @@
 <template>
-  首页  
+  购物车
 </template>
-  
+
 <script>
 export default {
-  setup() {
-    
-  }
+
 }
 </script>
 
